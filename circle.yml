@@ -6,11 +6,6 @@ machine:
     - docker
   environment:
     IMAGE_NAME: gaiadocker/base-go-build
-checkout:
-  post:
-    - git fetch --unshallow || true
-    - git fetch --tags
-    - export RELEASE_TAG=$(git describe --tags)
 dependencies:
   override:
     # download update_service script
@@ -27,6 +22,3 @@ deployment:
       # deply image to DockerHub
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push $IMAGE_NAME
-notify:
-  webhooks:
-    - url: https://webhook.master.gaiahub.io/wh/5a866f9b-98c9-438d-a8d4-53cf4ae9599c/4c310c8e220ee9bead74eece42ce0e109fd3535e
