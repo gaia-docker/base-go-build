@@ -1,0 +1,32 @@
+machine:
+  pre:
+    - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
+    - sudo chmod 0755 /usr/bin/docker
+  services:
+    - docker
+  environment:
+    IMAGE_NAME: gaiadocker/base-go-build
+checkout:
+  post:
+    - git fetch --unshallow || true
+    - git fetch --tags
+    - export RELEASE_TAG=$(git describe --tags)
+dependencies:
+  override:
+    # download update_service script
+    - chmod +x script/go_build.sh script/coverage.sh
+    # create builder image
+    - docker build -t $IMAGE_NAME -f Build.Dockerfile .
+deployment:
+  continuous:
+    branch: [master, develop, /feature_.*/]
+    commands:
+      # tag image with CircleCi branch and build
+      - docker tag $IMAGE_NAME $IMAGE_NAME:$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH
+      - docker tag $IMAGE_NAME $IMAGE_NAME:$CIRCLE_BRANCH
+      # deply image to DockerHub
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push $IMAGE_NAME
+notify:
+  webhooks:
+    - url: https://webhook.master.gaiahub.io/wh/5a866f9b-98c9-438d-a8d4-53cf4ae9599c/4c310c8e220ee9bead74eece42ce0e109fd3535e
