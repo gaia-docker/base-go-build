@@ -12,6 +12,9 @@ dependencies:
     - chmod +x script/go_build.sh script/coverage.sh
     # create builder image
     - docker build -t $IMAGE_NAME .
+test:
+  override:
+    - echo "test"
 deployment:
   continuous:
     branch: [master, develop, /feature_.*/]
