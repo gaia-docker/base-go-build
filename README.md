@@ -3,7 +3,7 @@
 [![Docker Image Layers](https://imagelayers.io/badge/gaiadocker/base-go-build:latest.svg)](https://imagelayers.io/?images=gaiadocker/base-go-build:latest)
 
 # base-go-build
-Building and testing a go project requires to setup a machine with go and maybe tools like: cross compile, test coverage, [glide](https://github.com/Masterminds/glide), generating junit report, etc.
+Building and testing a Go project requires to setup a machine with Go and maybe tools like: cross compile, test coverage, [glide](https://github.com/Masterminds/glide), generating junit report, etc.
 Building and running test coverage requires scripts. *base-go-build* Docker image contains all, so all you need to do in order to build or test your go project in running a docker container as follow:
 ##### Building Go Project:
 ```bash
@@ -40,3 +40,4 @@ general:
     - .dist
     - .cover
 ```
+> It's better to mention docker image tag name: _gaiadocker/base-go-build:**TAG**_ - in case you have an old version of this image locally and build and push it on another computer, docker run command in the example will still use the old version. Also, you may want to use a specific version of Go.
