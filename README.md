@@ -13,7 +13,7 @@ docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH gaiadocker/base-go-buil
 ```bash
 docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH $BUILDER_IMAGE_NAME /go/script/coverage.sh
 ```
-Creates a _.cover_ folder with test and coverage results.
+The test coverage script running on all projects' folders and generates, inside _.cover_ folder, junit and coverage reports for each folder, and a combine coverage report of all projects' tests.
 ### CircleCI
 If you are using _CircleCI_ for building and testing your go project, see follow _circle.yml_ which using _base-go-build_ docker image:
 ```yml
