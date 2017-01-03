@@ -21,7 +21,7 @@ machine:
   environment:
     PROJECT_NAME: tugbot
     PROJECT_PATH: /go/src/github.com/gaia-docker/$PROJECT_NAME
-    BUILDER_IMAGE_NAME: gaiadocker/base-go-build:12
+    BUILDER_IMAGE_NAME: gaiadocker/base-go-build:10-master
 dependencies:
   override:
     # run go build in a docker container
