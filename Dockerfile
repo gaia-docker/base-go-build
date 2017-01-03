@@ -1,4 +1,4 @@
-FROM golang:1.7.1-alpine
+FROM golang:1.7.4-alpine
 
 # install required libs
 RUN apk --no-cache add git bash curl
