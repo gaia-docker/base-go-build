@@ -21,7 +21,7 @@ machine:
   environment:
     PROJECT_NAME: tugbot
     PROJECT_PATH: /go/src/github.com/gaia-docker/$PROJECT_NAME
-    BUILDER_IMAGE_NAME: gaiadocker/base-go-build
+    BUILDER_IMAGE_NAME: gaiadocker/base-go-build:12
 dependencies:
   override:
     # run go build in a docker container
@@ -33,6 +33,8 @@ test:
   post:
     # copy test results
     - cp .cover/*_tests.xml $CIRCLE_TEST_REPORTS
+    # deploy test coverage results to codecov
+    - bash <(curl -s https://codecov.io/bash) -f .cover/cover.out
 general:
   artifacts:
     - .dist
