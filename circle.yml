@@ -6,15 +6,12 @@ machine:
     - docker
   environment:
     IMAGE_NAME: gaiadocker/base-go-build
-dependencies:
+test:
   override:
     # download update_service script
     - chmod +x script/go_build.sh script/coverage.sh
     # create builder image
     - docker build -t $IMAGE_NAME .
-test:
-  override:
-    - echo "test"
 deployment:
   continuous:
     branch: [master, develop, /feature_.*/]
