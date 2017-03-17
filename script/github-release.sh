@@ -1,6 +1,6 @@
 #!/usr/bin/env bash#
 #
-# Script to create and upload a release asset using the GitHub API v3.
+# Script to create and upload a release asset using the GitHub API v3
 # Parameters: owner, repo, tag, filename, github_api_token
 #
 # Example:
@@ -34,13 +34,13 @@ fi
 
 curl -i -H "Content-Type: application/json" -H "Authorization: token $github_api_token" -X POST -d '{"tag_name": "'$tag'", "target_commitish": "master", "name": "'$tag'", "body": "", "draft": false, "prerelease": false}' "$GH_REPO"/releases
 
-# Validate token.
+# Validate token
 curl -o /dev/null -sH "$AUTH" $GH_REPO || { echo "Error: Invalid repo, token or network issue!";  exit 1; }
 
-# Read asset tags.
+# Read asset tags
 response=$(curl -sH "$AUTH" $GH_TAGS)
 
-# Get ID of the asset based on given filename.
+# Get ID of the asset based on given filename
 eval $(echo "$response" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
 [ "$id" ] || { echo "Error: Failed to get release id for tag: $tag"; echo "$response" | awk 'length($0)<100' >&2; exit 1; }
 
