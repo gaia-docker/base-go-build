@@ -1,6 +1,6 @@
 FROM golang:1.7.5-alpine
 
-# install required libs
+# install git, bash & curl
 RUN apk --no-cache add git bash curl
 
 # install glide package manager
@@ -15,8 +15,5 @@ RUN go get -v golang.org/x/tools/cmd/cover
 
 # convert go test results into junit.xml format
 RUN go get -v github.com/jstemmer/go-junit-report
-
-# create, edit and upload artifacts to Github releases
-RUN go get github.com/aktau/github-release
 
 COPY script ./script
