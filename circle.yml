@@ -8,9 +8,7 @@ machine:
     IMAGE_NAME: gaiadocker/base-go-build
 test:
   override:
-    # download update_service script
     - chmod +x script/go_build.sh script/coverage.sh script/github-release.sh
-    # create builder image
     - docker build -t $IMAGE_NAME .
 deployment:
   continuous:
