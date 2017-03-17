@@ -11,12 +11,12 @@ docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH gaiadocker/base-go-buil
 ```
 ##### Test & Coverage Go Project:
 ```bash
-docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH $BUILDER_IMAGE_NAME /go/script/coverage.sh
+docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH gaiadocker/base-go-build /go/script/coverage.sh
 ```
 The test coverage script running on all projects' folders and generates, inside _.cover_ folder, junit and coverage reports for each folder, and a combine coverage report of all projects' tests.
 ##### Create and upload artifacts to Github releases
 ```bash
-docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH $BUILDER_IMAGE_NAME /go/script/github-release.sh github_api_token=TOKEN owner=gaia-docker repo=base-go-build tag=v0.1.0 filename=./build.zip 
+docker run --rm -v "$PWD":$PROJECT_PATH -w $PROJECT_PATH gaiadocker/base-go-build /go/script/github-release.sh github_api_token=TOKEN owner=gaia-docker repo=base-go-build tag=v0.1.0 filename=./build.zip 
 ```
 ### CircleCI
 If you are using _CircleCI_ for building and testing your go project, see follow _circle.yml_ which using _base-go-build_ docker image:

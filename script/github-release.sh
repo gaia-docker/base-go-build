@@ -1,4 +1,4 @@
-#!/usr/bin/env bash#
+#!/bin/bash
 #
 # Script to create and upload a release asset using the GitHub API v3
 # Parameters: owner, repo, tag, filename, github_api_token
