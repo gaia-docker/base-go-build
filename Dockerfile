@@ -4,7 +4,7 @@ FROM golang:1.8-alpine
 RUN apk --no-cache add git bash curl
 
 # install glide package manager
-RUN curl -Ls https://github.com/Masterminds/glide/releases/download/v0.12.1/glide-v0.12.3-linux-amd64.tar.gz | tar xz -C /tmp \
+RUN curl -Ls https://github.com/Masterminds/glide/releases/download/v0.12.3/glide-v0.12.3-linux-amd64.tar.gz | tar xz -C /tmp \
 && mv /tmp/linux-amd64/glide /usr/bin/
 
 # cross compile tool for go
