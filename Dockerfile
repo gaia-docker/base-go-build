@@ -1,4 +1,4 @@
-FROM golang:1.7.5-alpine
+FROM golang:1.8-alpine
 
 # install git, bash & curl
 RUN apk --no-cache add git bash curl
